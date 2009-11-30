@@ -15,7 +15,7 @@
 		<a href="{link show $article->id}#comments">{_"%d comment", $presenter->model->findAllComments($article->id)->count()}</a> |
 		<a href="{link show $article->id}">Show article</a> |
 		<a href="{link edit $article->id}">Edit article</a> |
-		<a href="{link deleteArticle! $article->id}" onclick="return confirm('Are sure?')">Delete article</a>
+		<a href="{link delete! $article->id}" onclick="return confirm('Are sure?')">Delete article</a>
 	</p>
 	<br />
 	{/foreach}
@@ -27,4 +27,4 @@
 {/if}
 {/snippet}
 
-<p>Chcete <a href="{link Article:add}">přidat článek</a> ?</p>
+<p>Do you want <a href="{link Article:add}">add article</a> ?</p>

@@ -22,7 +22,7 @@ class ArticlePresenter extends BasePresenter {
 
 
 	/** @secured */
-	public function handleDeleteArticle($id) {
+	public function handleDelete($id) {
 	
 		$user = Environment::getUser();
 		if (!$user->isAuthenticated()) {

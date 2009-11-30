@@ -1,8 +1,5 @@
 <?php
 
-require_once __DIR__ . '/IModel.php';
-require_once __DIR__ . '/../../libs/Nette/Object.php';
-
 /**
  * Base abstract model class by pattern Table Data Gateway.
  *

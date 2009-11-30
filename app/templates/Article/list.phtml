@@ -1,0 +1,30 @@
+@{block content}
+
+{block title}
+<h1>Articles</h1>
+{/block}
+
+{snippet:list}
+{if count($articles)}
+	{foreach $articles->orderBy('[createdAt] DESC')->fetchAll() as $article}
+	<h2>{$article->title}</h2>
+	<h3>{$article->author}</h3>
+	<h4>{$article->createdAt|date:'j.n.Y'}</h4>
+	<p>{!article->text|truncate:600}</p>
+	<p>
+		<a href="{link show $article->id}#comments">{_"%d comment", $presenter->model->findAllComments($article->id)->count()}</a> |
+		<a href="{link show $article->id}">Show article</a> |
+		<a href="{link edit $article->id}">Edit article</a> |
+		<a href="{link deleteArticle! $article->id}" onclick="return confirm('Are sure?')">Delete article</a>
+	</p>
+	<br />
+	{/foreach}
+
+	<hr />
+
+{else}
+	<p>No articles written yet.</p>
+{/if}
+{/snippet}
+
+<p>Chcete <a href="{link Article:add}">přidat článek</a> ?</p>

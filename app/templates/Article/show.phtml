@@ -1,0 +1,41 @@
+{block content}
+
+{block title}
+<h2>{$article->title}</h2>
+{/block}
+
+<h3>{$article->author}</h3>
+<h4>{$article->createdAt|date:'j.n.Y'}</h4>
+<p>{!article->text}</p>
+<p>
+	<a href="{link edit $article->id}" >Edit article</a> |
+	<a href="{link deleteArticle! $article->id}">Delete article</a> |
+	<a href="{link list}">Back to list</a>
+</p>
+
+<hr />
+
+{snippet:comments}
+{if count($comments)}
+<h3 id="comments">Comments:</h3>
+	{foreach $comments as $comment}
+	<div id="comment-{$comment->id}">
+		<p>
+			[<a href="{link this}#comment-{$comment->id}">#{$iterator->counter}</a>]
+			{$comment->createdAt|date:'j.n.Y'} <em>{$comment->author}</em> wrote:
+		</p>
+		<p>{!comment->text}</p>
+		<p><a href="{link deleteComment! $comment->id}" class="ajax">Delete comment</a></p>
+	</div>
+	{/foreach}
+	<hr />
+{else}
+	<p>There are no articles yet, be firts!</p>
+{/if}
+{/snippet}
+
+<h3>Add comment</h3>
+
+{snippet:form}
+{widget commentForm}
+{/snippet}

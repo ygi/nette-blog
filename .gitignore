@@ -1,0 +1,4 @@
+nbproject/**/*
+!.gitignore
+!readme.txt
+!.ht*

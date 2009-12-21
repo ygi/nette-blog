@@ -74,7 +74,7 @@ interface IModel {
 
 	/**
 	 * Deletes row(s) matching primary key.
-	 * @param int $id
+	 * @param int|array $id
 	 * @return DibiFluent
 	 */
 	public function delete($id);

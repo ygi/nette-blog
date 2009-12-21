@@ -70,26 +70,28 @@ class ArticlesModel extends BaseModel
 
 	/**
 	 * Deletes row(s) matching primary key.
-	 * @param int $id
+	 * @param int|array $id
 	 * @return int
 	 */
 	public function delete($id) {
 		$articles = is_array($id) ? $id : array($id);
 		$affected = 0;
 
+		$this->getConnection()->begin();
 		try {
-			$this->getConnection()->begin();
+			$this->getConnection()->begin('delete_comments');
 			$affected = parent::delete($articles);
 
 			foreach ($articles as $articleId) {
 				$this->deleteAllComments($articleId);
 			}
-			$this->getConnection()->commit();
+			$this->getConnection()->commit('delete_comments');
 
 		} catch (DibiException $e) {
 			$this->getConnection()->rollback();
 			throw $e;
 		}
+		$this->getConnection()->commit();
 		
 		return $affected;
 	}

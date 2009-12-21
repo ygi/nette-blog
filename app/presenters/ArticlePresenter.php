@@ -23,12 +23,6 @@ class ArticlePresenter extends BasePresenter {
 
 	/** @secured */
 	public function handleDelete($id) {
-	
-		$user = Environment::getUser();
-		if (!$user->isAuthenticated()) {
-			$this->redirect('Auth:login');
-		}
-	
 		$this->invalidateControl('flashes');
 		$this->invalidateControl('list');
 
@@ -46,12 +40,6 @@ class ArticlePresenter extends BasePresenter {
 
 	/** @secured */
 	public function handleDeleteComment($commentId) {
-
-		$user = Environment::getUser();
-		if (!$user->isAuthenticated()) {
-			$this->redirect('Auth:login');
-		}
-
 		$this->invalidateControl('flashes');
 		$this->invalidateControl('comments');
 
